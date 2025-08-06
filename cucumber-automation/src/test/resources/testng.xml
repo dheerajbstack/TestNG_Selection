@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="CucumberTestNGSuite">
+    <test name="CucumberTest">
+        <classes>
+            <class name="com.automation.runner.TestNGRunner"/>
+        </classes>
+    </test>
+</suite>

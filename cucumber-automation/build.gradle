@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Cucumber Dependencies
+    testImplementation 'io.cucumber:cucumber-java:7.14.0'
+    testImplementation 'io.cucumber:cucumber-testng:7.14.0'
+    
+    // TestNG
+    testImplementation 'org.testng:testng:7.8.0'
+    
+    // Selenium WebDriver
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.15.0'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.6.2'
+    
+    // Logging Dependencies
+    testImplementation 'org.slf4j:slf4j-api:2.0.9'
+    testImplementation 'ch.qos.logback:logback-classic:1.4.11'
+}
+
+test {
+    useTestNG()
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
+    // Force test execution even if up-to-date
+    outputs.upToDateWhen { false }
+}
+
+task cucumber(type: Test) {
+    useTestNG()
+    include '**/TestNGRunner.class'
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
+    outputs.upToDateWhen { false }
+}
+
+task printClasspath {
+    doLast {
+        println configurations.testRuntimeClasspath.asPath
+    }
+}

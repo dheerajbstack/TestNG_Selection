@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "features": ["src/test/resources/features/*.feature"],
+    "steps": ["src/test/java/com/automation/steps/*.java"],
+    "pages": []
+  },
+  "syncfeatures": "src/test/resources/features/*.feature",
+  "strictGherkinCompletion": true,
+  "strictGherkinValidation": true,
+  "smartSnippets": true,
+  "stepsInvariants": true,
+  "customParameters": []
+}
