@@ -21,6 +21,8 @@ dependencies {
     // Logging Dependencies
     testImplementation 'org.slf4j:slf4j-api:2.0.9'
     testImplementation 'ch.qos.logback:logback-classic:1.4.11'
+
+    testImplementation 'org.json:json:20231013'
 }
 
 test {
@@ -37,6 +39,17 @@ test {
 task cucumber(type: Test) {
     useTestNG()
     include '**/TestNGRunner.class'
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
+    outputs.upToDateWhen { false }
+}
+
+task userManagementTests(type: Test) {
+    useTestNG()
+    include '**/UserManagementTestRunner.class'
     testLogging {
         events "passed", "skipped", "failed"
         showStandardStreams = true

@@ -3,3 +3,7 @@ target/
 .gradle/
 .vscode/
 build
+.idea
+
+.APPLICATION_STATUS.md
+AUTOMATION_IMPLEMENTATION_SUMMARY.md
