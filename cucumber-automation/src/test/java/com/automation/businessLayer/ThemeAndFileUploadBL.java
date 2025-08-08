@@ -183,7 +183,7 @@ public class ThemeAndFileUploadBL {
         }
     }
     
-    public ThemeAndFileUploadScreen verifyThemePersistsAcrossNavigation(String themeName) {
+    public ThemeAndFileUploadBL verifyThemePersistsAcrossNavigation(String themeName) {
         boolean isSelectedThemeApply = themeAndFileUploadScreen.isSelectedThemeApply(themeName);
         Assert.assertTrue(isSelectedThemeApply, String.format("Selected theme '%s' should be applied successfully", themeName));
         return this;

@@ -173,18 +173,6 @@ public class ThemeAndFileUploadScreen {
         ((JavascriptExecutor) driver).executeScript("window.open('about:blank','_blank');");
         String newHandle = driver.getWindowHandle();
         driver.switchTo().window(newHandle);
-
-        // Simulate some action in the new tab
-        driver.get("about:blank");
-        try {
-            Thread.sleep(500); // Simulate time spent in new tab
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-
-        // Close the new tab and switch back to the original
-        driver.close();
-        driver.switchTo().window(originalHandle);
         return this;
     }
 
