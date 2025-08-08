@@ -82,13 +82,6 @@ function Products({ products, loading, fetchProducts, fetchAnalytics }) {
         <div className="products-grid">
           {products.map((product) => (
             <div key={product.id} className="product-card">
-              <h3>{product.name}</h3>
-              <p className="price">${product.price}</p>
-              <p className="category">{product.category}</p>
-              <p className={`stock ${product.stock < 20 ? 'low-stock' : ''}`}>
-                Stock: {product.stock}
-              </p>
-              <p className="description">{product.description}</p>
             </div>
           ))}
         </div>
