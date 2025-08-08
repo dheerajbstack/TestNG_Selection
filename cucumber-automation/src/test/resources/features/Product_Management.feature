@@ -1,8 +1,5 @@
 @product-management
 Feature: Product Management System
-  As a product manager
-  I want to manage products in the application
-  So that I can maintain product catalog and inventory
 
   Background:
     Given the application is running on "http://localhost:3000"
@@ -21,7 +18,7 @@ Feature: Product Management System
       | 5  | Book         | $14.99  | Education   | 200   | Programming fundamentals book       |
 
   @critical @TC008
-  Scenario: TC008 - Add New Product Success Path(1 TC)
+  Scenario: Add New Product Success Path(1 TC)
     When I add a product with details:
       | Name         | Price | Category      | Stock | Description              |
       | Test Product | 99.99 | Test Category | 10    | Test product description |

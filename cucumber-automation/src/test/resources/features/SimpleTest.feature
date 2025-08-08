@@ -11,15 +11,3 @@ Feature: Simple Web Test
     Given I open the web application
     When I check the page title
     Then I should see the title "Enhanced Full-Stack React App"
-    
-  @web
-  Scenario: Web application navigation test
-    Given I open the web application
-    When I check the page title
-    Then I should see the title "Enhanced Full-Stack React App"
-    
-  @api
-  Scenario: Another API validation test
-    Given I open the web application
-    When I check the page title
-    Then I should see the title "Enhanced Full-Stack React App"

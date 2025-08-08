@@ -8,7 +8,7 @@ Feature: Task Management System
     And I navigate to the "Tasks" tab
 
   @critical @TC011
-  Scenario: TC011 - Create New Task (1 TC)
+  Scenario: Create New Task (1 TC)
     When I create a new task with title "Test Task" and priority "High" and assign to a default user 1
     And I should see a Task Added successfully notification
     Then the task should appear in the tasks list
@@ -19,7 +19,7 @@ Feature: Task Management System
     And Should be able to complete the "default" task
 
   @medium @TC013
-  Scenario: TC013 - Task Priority Display (2 TC)
+  Scenario: Task Priority Display (2 TC)
     When I create tasks with different priority levels:
       | title        | priority |
       | High Task    | High     |
