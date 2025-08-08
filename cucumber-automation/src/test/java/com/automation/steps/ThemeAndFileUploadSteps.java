@@ -2,6 +2,7 @@ package com.automation.steps;
 
 import com.automation.businessLayer.ThemeAndFileUploadBL;
 import com.automation.utils.LogCapture;
+import com.automation.utils.ContextStore;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,10 +10,6 @@ import io.cucumber.java.en.When;
 public class ThemeAndFileUploadSteps {
     
     private ThemeAndFileUploadBL themeAndFileUploadBL;
-    private String currentFileName;
-    private String currentFileType;
-    private String currentTheme;
-    private String currentFileSize;
     
     public ThemeAndFileUploadSteps() {
         this.themeAndFileUploadBL = new ThemeAndFileUploadBL();
@@ -36,8 +33,8 @@ public class ThemeAndFileUploadSteps {
             "Selecting valid file for upload...");
         
         themeAndFileUploadBL.selectValidFile(fileType, fileName);
-        currentFileName = fileName;
-        currentFileType = fileType;
+        ContextStore.put("currentFileName", fileName);
+        ContextStore.put("currentFileType", fileType);
         
         LogCapture.addStepLog("File Selection", "✅ File selected: " + fileName + " (" + fileType + ")");
     }
@@ -60,7 +57,7 @@ public class ThemeAndFileUploadSteps {
             "Selecting background theme...");
         
         themeAndFileUploadBL.selectBackgroundTheme(themeName);
-        currentTheme = themeName;
+        ContextStore.put("currentTheme", themeName);
         
         LogCapture.addStepLog("Background Theme Selection", "✅ Background theme selected: " + themeName);
     }
@@ -83,8 +80,8 @@ public class ThemeAndFileUploadSteps {
             "Uploading image file...");
         
         themeAndFileUploadBL.uploadImageFile(fileName, fileType);
-        currentFileName = fileName;
-        currentFileType = fileType;
+        ContextStore.put("currentFileName", fileName);
+        ContextStore.put("currentFileType", fileType);
         
         LogCapture.addStepLog("Image File Upload", "✅ Image file uploaded: " + fileName + " (" + fileType + ")");
     }
@@ -235,8 +232,8 @@ public class ThemeAndFileUploadSteps {
             "Testing file size and type validation...");
         
         themeAndFileUploadBL.uploadFileWithSizeAndType(fileSize, fileType);
-        currentFileSize = fileSize;
-        currentFileType = fileType;
+        ContextStore.put("currentFileSize", fileSize);
+        ContextStore.put("currentFileType", fileType);
         
         LogCapture.addStepLog("File Validation Test", "✅ File validation test performed: " + fileSize + " " + fileType);
     }
@@ -347,7 +344,7 @@ public class ThemeAndFileUploadSteps {
             "Setting up theme selection precondition...");
         
         themeAndFileUploadBL.selectSpecificTheme(themeName);
-        currentTheme = themeName;
+        ContextStore.put("currentTheme", themeName);
         
         LogCapture.addStepLog("Theme Selection Precondition", "✅ Theme selected: " + themeName);
     }
@@ -428,6 +425,39 @@ public class ThemeAndFileUploadSteps {
         LogCapture.addStepLog("File Sorting", "✅ File sorting capabilities verified");
     }
 
+    @When("I click on {string} option")
+    public void i_click_on_option(String optionName) {
+        LogCapture.logTestStepWithDetails("🎨 Theme Option Selection", 
+            "Option: " + optionName,
+            "Clicking on theme option...");
+        
+        themeAndFileUploadBL.clickOnThemeOption(optionName);
+        
+        LogCapture.addStepLog("Theme Option Selection", "✅ Clicked on option: " + optionName);
+    }
+
+    @When("I upload multiple image files")
+    public void i_upload_multiple_image_files() {
+        LogCapture.logTestStepWithDetails("🖼️ Multiple Image Upload", 
+            "Action: Uploading multiple image files",
+            "Uploading multiple image files to gallery...");
+        
+        themeAndFileUploadBL.uploadMultipleImageFilesToGallery();
+        
+        LogCapture.addStepLog("Multiple Image Upload", "✅ Multiple image files uploaded to gallery");
+    }
+
+    @Then("the uploaded images should be displayed in the gallery")
+    public void the_uploaded_images_should_be_displayed_in_the_gallery() {
+        LogCapture.logTestStepWithDetails("🖼️ Gallery Display Verification", 
+            "Expected: Uploaded images displayed in gallery",
+            "Verifying images are displayed in gallery...");
+        
+        themeAndFileUploadBL.verifyImagesDisplayedInGallery();
+        
+        LogCapture.addStepLog("Gallery Display Verification", "✅ Images verified in gallery display");
+    }
+
     @Given("I have uploaded multiple image files")
     public void i_have_uploaded_multiple_image_files() {
         LogCapture.logTestStepWithDetails("🖼️ Multiple Image Upload", 
@@ -445,9 +475,13 @@ public class ThemeAndFileUploadSteps {
             "Action: Setting image as background",
             "Setting one image as background...");
         
-        // Use a default image name or the last uploaded one
-        String imageName = currentFileName != null ? currentFileName : "background1.jpg";
+        // Use the stored filename or a default
+        String imageName = (String) ContextStore.get("currentFileName");
+        if (imageName == null) {
+            imageName = "background1.jpg";
+        }
         themeAndFileUploadBL.setOneImageAsBackground(imageName);
+        ContextStore.put("activeBackgroundImage", imageName);
         
         LogCapture.addStepLog("Background Image Setting", "✅ Image set as background: " + imageName);
     }
@@ -458,7 +492,10 @@ public class ThemeAndFileUploadSteps {
             "Expected: Image becomes page background",
             "Verifying image becomes page background...");
         
-        String imageName = currentFileName != null ? currentFileName : "background1.jpg";
+        String imageName = (String) ContextStore.get("activeBackgroundImage");
+        if (imageName == null) {
+            imageName = "background1.jpg";
+        }
         themeAndFileUploadBL.verifyImageBecomesPageBackground(imageName);
         
         LogCapture.addStepLog("Background Image Verification", "✅ Image verified as page background");
@@ -470,9 +507,13 @@ public class ThemeAndFileUploadSteps {
             "Action: Changing to different image background",
             "Changing to a different image background...");
         
+        // Store the previous background for verification
+        String previousBackground = (String) ContextStore.get("activeBackgroundImage");
+        ContextStore.put("previousBackgroundImage", previousBackground);
+        
         String newImageName = "background2.png";
         themeAndFileUploadBL.changeToDifferentImageBackground(newImageName);
-        currentFileName = newImageName; // Update current file name
+        ContextStore.put("activeBackgroundImage", newImageName);
         
         LogCapture.addStepLog("Background Image Change", "✅ Changed to different image background: " + newImageName);
     }
@@ -483,7 +524,10 @@ public class ThemeAndFileUploadSteps {
             "Expected: Background updates to new image",
             "Verifying background updates to new image...");
         
-        String newImageName = currentFileName != null ? currentFileName : "background2.png";
+        String newImageName = (String) ContextStore.get("activeBackgroundImage");
+        if (newImageName == null) {
+            newImageName = "background2.png";
+        }
         themeAndFileUploadBL.verifyBackgroundUpdatesToNewImage(newImageName);
         
         LogCapture.addStepLog("New Background Verification", "✅ Background update to new image verified");
@@ -495,7 +539,10 @@ public class ThemeAndFileUploadSteps {
             "Expected: Previous background no longer active",
             "Verifying previous background is no longer active...");
         
-        String previousImageName = "background1.jpg"; // Default previous image
+        String previousImageName = (String) ContextStore.get("previousBackgroundImage");
+        if (previousImageName == null) {
+            previousImageName = "background1.jpg";
+        }
         themeAndFileUploadBL.verifyPreviousBackgroundNoLongerActive(previousImageName);
         
         LogCapture.addStepLog("Previous Background Check", "✅ Previous background verified as inactive");
@@ -513,7 +560,7 @@ public class ThemeAndFileUploadSteps {
         String fileType = fileName.substring(fileName.lastIndexOf('.') + 1).toUpperCase();
         themeAndFileUploadBL.selectValidFile(fileType, fileName);
         themeAndFileUploadBL.completeUpload();
-        currentFileName = fileName;
+        ContextStore.put("currentFileName", fileName);
         
         LogCapture.addStepLog("Single File Upload", "✅ File uploaded: " + fileName);
     }
@@ -537,7 +584,7 @@ public class ThemeAndFileUploadSteps {
             "Applying specified theme...");
         
         themeAndFileUploadBL.selectTheme(themeName);
-        currentTheme = themeName;
+        ContextStore.put("currentTheme", themeName);
         
         LogCapture.addStepLog("Theme Application", "✅ Theme applied: " + themeName);
     }
@@ -548,6 +595,7 @@ public class ThemeAndFileUploadSteps {
             "Expected: Theme applied successfully",
             "Verifying theme application...");
         
+        String currentTheme = (String) ContextStore.get("currentTheme");
         themeAndFileUploadBL.verifyBackgroundChangesImmediately(currentTheme);
         
         LogCapture.addStepLog("Theme Application Verification", "✅ Theme application verified");

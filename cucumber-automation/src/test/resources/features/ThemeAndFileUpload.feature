@@ -22,7 +22,7 @@ Feature: File Upload and Theme Management
 
   @background-customization @tc22
   Scenario: Custom background with uploaded images
-    When I click on "Image Background" option
+    When I select theme "Image Background" and validate background changes immediately
     And I upload multiple image files
     Then the uploaded images should be displayed in the gallery
     When I set one image as background
