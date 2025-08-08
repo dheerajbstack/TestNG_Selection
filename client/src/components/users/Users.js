@@ -23,7 +23,6 @@ function Users({ users, loading, fetchUsers, fetchAnalytics }) {
   };
 
   const handleDeleteUser = async (userId) => {
-    if (!window.confirm('Are you sure you want to delete this user?')) return;
     
     try {
       await API.users.delete(userId);
