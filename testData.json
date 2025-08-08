@@ -1,0 +1,22 @@
+{
+    "testCases": [
+        {
+            "testCase": "Test login flow using creds",
+            "testCaseFilePath": "testCase/path/loginTest.js",
+            "isFlaky": false,
+            "result": "Passed"
+        },
+        {
+            "testCase": "Test user registration flow",
+            "testCaseFilePath": "testCase/path/registrationTest.js",
+            "isFlaky": true,
+            "result": "Failed"
+        },
+        {
+            "testCase": "Test data validation",
+            "testCaseFilePath": "testCase/path/dataValidationTest.js",
+            "isFlaky": false,
+            "result": "Passed"
+        }
+    ]
+}
