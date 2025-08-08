@@ -174,7 +174,7 @@ function FilesAndThemes({ backgroundTheme, setBackgroundTheme, hasImageBackgroun
               { value: 'green', name: 'Forest Green', color: '#166534' },
               { value: 'purple', name: 'Royal Purple', color: '#7c3aed' },
               { value: 'gradient', name: 'Sunset Gradient', color: 'linear-gradient(45deg, #ff6b6b, #ffd93d)' },
-              ...(hasImageBackground ? [] : [{ value: 'image', name: 'Image Background', color: '#333' }])
+              // ...(hasImageBackground ? [] : [{ value: 'image', name: 'Image Background', color: '#333' }])
             ].map(theme => (
               <button
                 key={theme.value}
@@ -265,7 +265,7 @@ function FilesAndThemes({ backgroundTheme, setBackgroundTheme, hasImageBackgroun
             {loading ? 'Uploading...' : 'Upload File'}
           </button>
         </form>
-      </div>
+      </div> */}
 
       {/* Uploaded Files List */}
       <div className="uploaded-files-section">
