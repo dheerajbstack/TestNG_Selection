@@ -81,7 +81,6 @@ function Tasks({ tasks, users, loading, fetchTasks, fetchAnalytics }) {
               </div>
               <button
                 className="toggle-btn"
-                onClick={() => handleToggleTask(task.id, task.completed)}
               >
                 {task.completed ? '✓' : '○'}
               </button>
