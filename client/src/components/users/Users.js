@@ -10,7 +10,7 @@ function Users({ users, loading, fetchUsers, fetchAnalytics }) {
     if (!newUser.name || !newUser.email) return;
 
     try {
-    //   toast.info('Adding user...');
+      toast.info('Adding user...');
       const response = await API.users.create(newUser);
       setNewUser({ name: '', email: '', role: 'user' });
       fetchUsers();
