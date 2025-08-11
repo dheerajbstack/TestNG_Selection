@@ -36,7 +36,7 @@ function Orders({ orders, users, products, loading, fetchOrders, fetchProducts, 
               <option key={user.id} value={user.id}>{user.name}</option>
             ))}
           </select>
-          <select
+          {/* <select
             value={newOrder.productId}
             onChange={(e) => setNewOrder({ ...newOrder, productId: e.target.value })}
           >
@@ -46,7 +46,7 @@ function Orders({ orders, users, products, loading, fetchOrders, fetchProducts, 
                 {product.name} - ${product.price} (Stock: {product.stock})
               </option>
             ))}
-          </select>
+          </select> */}
           <input
             type="number"
             min="1"
