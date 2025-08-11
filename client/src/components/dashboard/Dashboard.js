@@ -33,12 +33,6 @@ function Dashboard({ message, health, analytics }) {
               <p>Low Stock: {analytics.products.lowStock}</p>
             </div>
             <div className="analytics-card">
-              <h3>📋 Tasks</h3>
-              <p>Total: {analytics.tasks.total}</p>
-              <p>Completed: {analytics.tasks.completed}</p>
-              <p>High Priority: {analytics.tasks.highPriority}</p>
-            </div>
-            <div className="analytics-card">
               <h3>🛒 Orders</h3>
               <p>Total: {analytics.orders.total}</p>
               <p>Pending: {analytics.orders.pending}</p>
