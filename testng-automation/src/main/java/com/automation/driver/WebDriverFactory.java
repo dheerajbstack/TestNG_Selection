@@ -9,10 +9,15 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * WebDriverFactory class for managing WebDriver instances
@@ -80,6 +85,12 @@ public class WebDriverFactory {
      * @return WebDriver instance
      */
     public static WebDriver initializeDriver() {
+        // Check if running on BrowserStack (BrowserStack SDK sets this property)
+        String bsConfig = System.getProperty("browserstack.config");
+        if (bsConfig != null || isBrowserStackExecution()) {
+            return createBrowserStackDriver();
+        }
+        
         String browser = System.getProperty("browser", "chrome").toLowerCase();
         boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
         
@@ -209,5 +220,83 @@ public class WebDriverFactory {
      */
     public static boolean isDriverInitialized() {
         return driver.get() != null;
+    }
+    
+    /**
+     * Check if execution is on BrowserStack
+     * @return true if running on BrowserStack, false otherwise
+     */
+    private static boolean isBrowserStackExecution() {
+        // Check for BrowserStack specific environment variables or system properties
+        return System.getProperty("browserstack.user") != null || 
+               System.getProperty("browserstack.key") != null ||
+               System.getenv("BROWSERSTACK_USERNAME") != null ||
+               System.getenv("BROWSERSTACK_ACCESS_KEY") != null;
+    }
+    
+    /**
+     * Create BrowserStack RemoteWebDriver
+     * @return WebDriver instance configured for BrowserStack
+     */
+    private static WebDriver createBrowserStackDriver() {
+        try {
+            // BrowserStack Hub URL
+            String username = System.getProperty("browserstack.user", System.getenv("BROWSERSTACK_USERNAME"));
+            String accessKey = System.getProperty("browserstack.key", System.getenv("BROWSERSTACK_ACCESS_KEY"));
+            
+            if (username == null || accessKey == null) {
+                logger.warn("BrowserStack credentials not found. Using local driver instead.");
+                return initializeDriver(BrowserType.CHROME, false);
+            }
+            
+            String hubUrl = String.format("https://%s:%s@hub-cloud.browserstack.com/wd/hub", username, accessKey);
+            
+            DesiredCapabilities caps = new DesiredCapabilities();
+            
+            // Set browser capabilities from system properties or defaults
+            String browser = System.getProperty("browser", "chrome");
+            String platform = System.getProperty("platform", "Windows 11");
+            String browserVersion = System.getProperty("browserVersion", "latest");
+            
+            caps.setCapability("browserName", browser);
+            caps.setCapability("browserVersion", browserVersion);
+            // caps.setCapability("os", platform.split(" ")[0]);
+            // caps.setCapability("osVersion", platform.contains(" ") ? platform.split(" ", 2)[1] : "11");
+            
+            // BrowserStack specific capabilities
+            Map<String, Object> browserstackOptions = new HashMap<>();
+            browserstackOptions.put("projectName", "TestNG Automation Framework");
+            browserstackOptions.put("buildName", "TestNG Build - " + System.currentTimeMillis());
+            browserstackOptions.put("sessionName", "TestNG Test Session");
+            browserstackOptions.put("debug", "false");
+            browserstackOptions.put("networkLogs", "false");
+            browserstackOptions.put("consoleLogs", "errors");
+            browserstackOptions.put("resolution", "1920x1080");
+            
+            // Local testing support
+            boolean isLocal = Boolean.parseBoolean(System.getProperty("local", "false"));
+            if (isLocal) {
+                browserstackOptions.put("local", "true");
+                browserstackOptions.put("localIdentifier", System.getProperty("localIdentifier"));
+            }
+            
+            caps.setCapability("bstack:options", browserstackOptions);
+            
+            WebDriver webDriver = new RemoteWebDriver(new URL(hubUrl), caps);
+            
+            // Configure WebDriver settings
+            webDriver.manage().window().maximize();
+            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+            
+            driver.set(webDriver);
+            logger.info("BrowserStack WebDriver initialized successfully for browser: {} on platform: {}", browser, platform);
+            
+            return webDriver;
+            
+        } catch (Exception e) {
+            logger.error("Failed to initialize BrowserStack WebDriver", e);
+            throw new RuntimeException("BrowserStack WebDriver initialization failed", e);
+        }
     }
 }

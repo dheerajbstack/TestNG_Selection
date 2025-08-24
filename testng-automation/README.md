@@ -5,6 +5,7 @@ A comprehensive TestNG-based automation framework with Selenium WebDriver for we
 ## Features
 
 - ✅ **Multi-Browser Support**: Chrome, Firefox, Edge, Safari
+- ✅ **BrowserStack Integration**: Cloud testing on 3000+ browser/OS combinations
 - ✅ **Headless Mode**: Run tests in headless mode for CI/CD
 - ✅ **Page Object Model**: Well-structured page objects for maintainable tests
 - ✅ **TestNG Integration**: Powerful testing framework with annotations and listeners
@@ -13,7 +14,7 @@ A comprehensive TestNG-based automation framework with Selenium WebDriver for we
 - ✅ **Parallel Execution**: Run tests in parallel for faster execution
 - ✅ **Configurable**: Environment-specific configurations
 - ✅ **Logging**: Comprehensive logging with Logback
-- ✅ **Gradle Build**: Modern build system with Gradle
+- ✅ **Maven Build**: Modern build system with Maven
 
 ## Project Structure
 
@@ -45,9 +46,8 @@ testng-automation/
 │           ├── testng.xml             # Main TestNG suite
 │           ├── smoke-tests.xml        # Smoke test suite
 │           └── regression-tests.xml   # Regression test suite
-├── build.gradle                       # Gradle build file
-├── gradlew                            # Gradle wrapper (Unix)
-├── gradlew.bat                        # Gradle wrapper (Windows)
+├── pom.xml                            # Maven build file
+├── browserstack.yml                   # BrowserStack configuration
 └── README.md                          # This file
 ```
 
@@ -135,6 +135,85 @@ cd testng-automation
 # Build project
 ./gradlew build
 ```
+
+## BrowserStack Integration
+
+This framework supports running tests on BrowserStack cloud platform for cross-browser testing across multiple operating systems and browser versions.
+
+### Setup BrowserStack
+
+1. **Get BrowserStack Account**: Sign up at [BrowserStack](https://www.browserstack.com/)
+
+2. **Configure Credentials**: Update `browserstack.yml` with your credentials:
+```yaml
+userName: YOUR_USERNAME
+accessKey: YOUR_ACCESS_KEY
+```
+
+3. **Alternative Credential Setup**: Set environment variables:
+```bash
+export BROWSERSTACK_USERNAME=your_username
+export BROWSERSTACK_ACCESS_KEY=your_access_key
+```
+
+### BrowserStack Configuration
+
+The `browserstack.yml` file contains:
+- **Platforms**: Define OS/browser combinations
+- **Capabilities**: Set screen resolution, debugging options
+- **Local Testing**: Configure for internal applications
+- **Parallel Execution**: Control concurrent test sessions
+
+### Running BrowserStack Tests
+
+#### Run on BrowserStack Cloud
+```bash
+# Run cross-browser tests on BrowserStack cloud
+mvn test -P browserstack-test
+
+# Run with specific browser/platform
+mvn test -P browserstack-test -Dbrowser=chrome -Dplatform="Windows 11"
+```
+
+#### Run Local Tests on BrowserStack
+```bash
+# Run tests against local/internal applications
+mvn test -P browserstack-local-test
+
+# Enable BrowserStack Local tunnel
+mvn test -P browserstack-local-test -Dlocal=true
+```
+
+#### BrowserStack with Custom Parameters
+```bash
+# Run with specific BrowserStack capabilities
+mvn test -P browserstack-test \
+  -Dbrowser=firefox \
+  -Dplatform="OS X Monterey" \
+  -DbrowserVersion=latest \
+  -Dresolution=1920x1080
+```
+
+### BrowserStack Test Suites
+
+- **browserstack-test.xml**: Cross-platform tests on BrowserStack cloud
+- **browserstack-local-test.xml**: Local testing with BrowserStack tunnel
+
+### Viewing BrowserStack Results
+
+- **BrowserStack Dashboard**: View test results at [BrowserStack Automate](https://automate.browserstack.com/)
+- **Video Recordings**: Automatic video capture of test sessions
+- **Logs**: Browser console logs and network logs
+- **Screenshots**: Automatic screenshots on test failures
+
+### BrowserStack Features
+
+- ✅ **Cross-Browser Testing**: 3000+ browser/OS combinations
+- ✅ **Real Devices**: Test on real mobile devices
+- ✅ **Local Testing**: Test internal/staging applications
+- ✅ **Parallel Execution**: Run multiple tests simultaneously
+- ✅ **Debugging Tools**: Screenshots, videos, console logs
+- ✅ **CI/CD Integration**: Jenkins, GitHub Actions, etc.
 
 ## Configuration
 

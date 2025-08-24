@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="BrowserStack Test Suite" parallel="tests" thread-count="3">
+    <listeners>
+        <listener class-name="com.automation.listeners.TestListener"/>
+        <listener class-name="com.automation.listeners.ExtentReportListener"/>
+    </listeners>
+    
+    <test name="Chrome Tests" parallel="false">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="platform" value="Windows 11"/>
+        <classes>
+            <class name="com.automation.tests.HomePageTest"/>
+            <class name="com.automation.tests.DashboardTest"/>
+            <class name="com.automation.tests.ProductManagementTest"/>
+            <class name="com.automation.tests.UserManagementTest"/>
+            <class name="com.automation.tests.TaskManagementTest"/>
+            <class name="com.automation.tests.SimpleApplicationTest"/>
+            <class name="com.automation.tests.ThemeAndFileUploadTest"/>
+        </classes>
+    </test>    
+    <!-- <test name="Firefox Tests" parallel="false">
+        <parameter name="browser" value="firefox"/>
+        <parameter name="platform" value="Windows 11"/>
+        <classes>
+            <class name="com.automation.tests.UserManagementTest"/>
+            <class name="com.automation.tests.TaskManagementTest"/>
+        </classes>
+    </test>
+    
+    <test name="Safari Tests" parallel="false">
+        <parameter name="browser" value="safari"/>
+        <parameter name="platform" value="OS X Monterey"/>
+        <classes>
+            <class name="com.automation.tests.SimpleApplicationTest"/>
+            <class name="com.automation.tests.ThemeAndFileUploadTest"/>
+        </classes>
+    </test> -->
+</suite>
