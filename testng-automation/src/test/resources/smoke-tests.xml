@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Smoke Test Suite" verbose="1">
+    
+    <parameter name="browser" value="chrome"/>
+    <parameter name="headless" value="false"/>
+    <parameter name="baseUrl" value="http://localhost:3000"/>
+    
+    <test name="Smoke Tests">
+        <classes>
+            <class name="com.automation.tests.HomePageTest">
+                <methods>
+                    <include name="testHomePageLoad"/>
+                    <include name="testPageTitle"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    
+</suite>
