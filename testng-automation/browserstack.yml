@@ -1,0 +1,50 @@
+# BrowserStack Configuration
+# Replace YOUR_USERNAME and YOUR_ACCESS_KEY with your BrowserStack credentials
+userName: YOUR_USERNAME
+accessKey: YOUR_ACCESS_KEY
+
+# Test framework configuration
+framework: testng
+
+# Project settings
+projectName: TestNG Automation Framework
+buildName: TestNG Build
+sessionName: TestNG Test Session
+
+# Test execution settings
+parallelsPerPlatform: 1
+# maxParallel: 5
+
+# BrowserStack test platforms
+platforms:
+  - browserName: Chrome
+    browserVersion: latest
+  # - browserName: Firefox
+  #   browserVersion: latest
+  # - browserName: Edge
+  #   browserVersion: latest
+  # - browserName: Safari
+  #   browserVersion: latest
+  # - browserName: Chrome
+  #   browserVersion: latest
+  # - browserName: Safari
+  #   browserVersion: latest
+
+# Test execution capabilities
+browserstackLocal: true  # Set to true if testing local/internal applications
+debug: false  # Enable visual logs
+networkLogs: false  # Enable network logs
+
+
+
+consoleLogs: errors  # Console log level
+resolution: 1920x1080  # Screen resolution
+
+# Local testing configuration (when browserstackLocal: true)
+localOptions:
+  localIdentifier: null
+  forceLocal: false
+
+# Advanced options
+interactiveDebugging: false
+idleTimeout: 300  # Session timeout in seconds
