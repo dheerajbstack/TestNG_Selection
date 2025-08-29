@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Regression Test Suite" verbose="1" parallel="classes" thread-count="2">
+    
+    <parameter name="browser" value="chrome"/>
+    <parameter name="headless" value="true"/>
+    <parameter name="baseUrl" value="http://localhost:3000"/>
+    
+    <test name="Regression Tests">
+        <packages>
+            <package name="com.automation.tests"/>
+        </packages>
+    </test>
+    
+</suite>
