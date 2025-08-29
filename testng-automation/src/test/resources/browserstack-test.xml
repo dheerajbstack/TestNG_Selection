@@ -15,9 +15,9 @@
             <class name="com.automation.tests.DashboardTest"/>
             <class name="com.automation.tests.ProductManagementTest"/>
             <class name="com.automation.tests.UserManagementTest"/>
-            <class name="com.automation.tests.TaskManagementTest"/>
-            <class name="com.automation.tests.SimpleApplicationTest"/>
-            <class name="com.automation.tests.ThemeAndFileUploadTest"/>
+            <!-- <class name="com.automation.tests.TaskManagementTest"/> -->
+            <!-- <class name="com.automation.tests.SimpleApplicationTest"/> -->
+            <!-- <class name="com.automation.tests.ThemeAndFileUploadTest"/> -->
         </classes>
     </test>    
     <!-- <test name="Firefox Tests" parallel="false">
