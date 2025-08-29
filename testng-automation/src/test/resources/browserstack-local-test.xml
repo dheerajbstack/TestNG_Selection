@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="BrowserStack Local Test Suite" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="com.automation.listeners.TestListener"/>
+        <listener class-name="com.automation.listeners.ExtentReportListener"/>
+    </listeners>
+    
+    <test name="Local Chrome Tests" parallel="false">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="platform" value="Windows 11"/>
+        <parameter name="local" value="true"/>
+        <classes>
+            <class name="com.automation.tests.ApplicationSetupTest"/>
+            <class name="com.automation.tests.HomePageTest"/>
+            <class name="com.automation.tests.DashboardTest"/>
+        </classes>
+    </test>
+    
+    <test name="Local Firefox Tests" parallel="false">
+        <parameter name="browser" value="firefox"/>
+        <parameter name="platform" value="Windows 11"/>
+        <parameter name="local" value="true"/>
+        <classes>
+            <class name="com.automation.tests.ProductManagementTest"/>
+            <class name="com.automation.tests.UserManagementTest"/>
+        </classes>
+    </test>
+</suite>
