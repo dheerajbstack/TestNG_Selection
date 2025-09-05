@@ -7,9 +7,9 @@ accessKey: 71UUWCwS3GDVqN8RKesg
 framework: testng
 
 # Project settings
-projectName: TestNG Automation Kalyan
-buildName: TestNG Kalyan Build
-sessionName: TestNG Kalyan Test Session
+projectName: TestNG Automation Kalyan1
+buildName: TestNG Kalyan1 Build
+sessionName: TestNG Kalyan1 Test Session
 
 # Test execution settings
 parallelsPerPlatform: 1
@@ -52,5 +52,5 @@ idleTimeout: 300  # Session timeout in seconds
 testOrchestrationOptions:
   runSmartSelection:
     enabled: true
-    mode: 'relevantOnly'
-
+    mode: relevantOnly
+    
