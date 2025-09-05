@@ -29,7 +29,7 @@
         <jackson.version>2.15.2</jackson.version>
         <commons-lang3.version>3.13.0</commons-lang3.version>
         <assertj.version>3.24.2</assertj.version>
-        <browserstack.version>1.20.1</browserstack.version>
+        <browserstack.version>1.40.0</browserstack.version>
         
         <!-- Plugin Versions -->
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
