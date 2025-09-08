@@ -38,6 +38,27 @@ app.use((req, res, next) => {
 });
 
 // Routes
+// Health check endpoint for PM2 and monitoring
+app.get('/health', (req, res) => {
+  const healthCheck = {
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+    status: 'OK',
+    pid: process.pid,
+    memory: process.memoryUsage(),
+    environment: process.env.NODE_ENV || 'development',
+    version: '2.0.0'
+  };
+  
+  try {
+    res.status(200).json(healthCheck);
+  } catch (error) {
+    healthCheck.status = 'ERROR';
+    healthCheck.error = error.message;
+    res.status(503).json(healthCheck);
+  }
+});
+
 app.get('/api', (req, res) => {
   res.json({ 
     message: 'Welcome to the Enhanced Full-Stack API!',
