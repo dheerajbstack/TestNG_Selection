@@ -1,7 +1,7 @@
 # BrowserStack Configuration
 # Replace YOUR_USERNAME and YOUR_ACCESS_KEY with your BrowserStack credentials
-userName: kalyansambhana_PfDuWN
-accessKey: 71UUWCwS3GDVqN8RKesg
+userName: YOUR_USERNAME
+accessKey: YOUR_ACCESS_KEY
 
 # Test framework configuration
 framework: testng
