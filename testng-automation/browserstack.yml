@@ -8,7 +8,7 @@ framework: testng
 
 # Project settings
 projectName: TestNG Automation Kalyan1
-buildName: TestNG Kalyan2 Build
+buildName: TestNG Kalyan1 Build
 sessionName: TestNG Kalyan1 Test Session
 testObservability: true
 
