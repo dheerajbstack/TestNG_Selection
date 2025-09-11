@@ -8,8 +8,10 @@ framework: testng
 
 # Project settings
 projectName: TestNG Automation Kalyan1
-buildName: TestNG Kalyan1 Build
+buildName: TestNG Kalyan2 Build
 sessionName: TestNG Kalyan1 Test Session
+testObservability: true
+
 
 # Test execution settings
 parallelsPerPlatform: 1

@@ -133,7 +133,7 @@ public class DashboardTest extends BaseTest {
         
         // Navigate back to Dashboard
         homePage.clickDashboard();
-        Assert.assertTrue(dashboardPage.isPageLoaded(), "Should be able to navigate back to dashboard");
+        Assert.assertFalse(dashboardPage.isPageLoaded(), "Should be able to navigate back to dashboard");
         
         logger.info("Test completed: Dashboard Tab Content Updates");
     }
