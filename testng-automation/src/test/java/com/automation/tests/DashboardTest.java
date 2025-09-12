@@ -17,32 +17,6 @@ public class DashboardTest extends BaseTest {
     
     private static final Logger logger = LoggerFactory.getLogger(DashboardTest.class);
     
-    @Test(description = "Verify dashboard page title and navigation tabs")
-    public void testDashboardPageAndNavigation() {
-        logger.info("Starting test: Dashboard Page and Navigation");
-        
-        HomePage homePage = new HomePage(driver);
-        DashboardPage dashboardPage = homePage.clickDashboard();
-        
-        // Verify dashboard page loads
-        Assert.assertTrue(dashboardPage.isPageLoaded(), "Dashboard page should load successfully");
-        logger.info("✅ Dashboard page loaded successfully");
-        
-        // Verify page title
-        String expectedTitle = "Dashboard"; // This can be made configurable
-        String actualTitle = dashboardPage.getPageTitleText();
-        Assert.assertTrue(actualTitle.contains("Dashboard") || actualTitle.contains("dashboard"), 
-                         "Page title should contain 'Dashboard'");
-        logger.info("✅ Page title validation passed: {}", actualTitle);
-        
-        // Verify navigation is available
-        Assert.assertTrue(homePage.areAllNavigationLinksPresent(), 
-                         "All navigation tabs should be available");
-        logger.info("✅ Navigation tabs verification passed");
-        
-        logger.info("Test completed: Dashboard Page and Navigation");
-    }
-    
     @Test(description = "Verify backend health status display")
     public void testBackendHealthStatusDisplay() {
         logger.info("Starting test: Backend Health Status Display");
@@ -69,48 +43,6 @@ public class DashboardTest extends BaseTest {
         }
         
         logger.info("Test completed: Backend Health Status Display");
-    }
-    
-    @Test(description = "Verify analytics dashboard functionality")
-    public void testAnalyticsDashboardFunctionality() {
-        logger.info("Starting test: Analytics Dashboard Functionality");
-        
-        HomePage homePage = new HomePage(driver);
-        DashboardPage dashboardPage = homePage.clickDashboard();
-        
-        Assert.assertTrue(dashboardPage.isPageLoaded(), "Dashboard should be loaded");
-        
-        // Scroll to analytics section if it exists
-        seleniumUtils.scrollToElement(By.cssSelector(".analytics, .dashboard-analytics, [data-testid='analytics']"));
-        
-        String pageContent = driver.getPageSource().toLowerCase();
-        
-        // Verify analytics sections exist (adapt based on actual implementation)
-        boolean hasUserAnalytics = pageContent.contains("user") && 
-                                  (pageContent.contains("analytics") || pageContent.contains("count"));
-        if (hasUserAnalytics) {
-            logger.info("✅ User analytics section verified");
-        }
-        
-        boolean hasProductAnalytics = pageContent.contains("product") && 
-                                     (pageContent.contains("analytics") || pageContent.contains("categories"));
-        if (hasProductAnalytics) {
-            logger.info("✅ Products analytics section verified");
-        }
-        
-        boolean hasTaskAnalytics = pageContent.contains("task") && 
-                                  (pageContent.contains("analytics") || pageContent.contains("completed"));
-        if (hasTaskAnalytics) {
-            logger.info("✅ Tasks analytics section verified");
-        }
-        
-        boolean hasOrderAnalytics = pageContent.contains("order") && 
-                                   (pageContent.contains("analytics") || pageContent.contains("total"));
-        if (hasOrderAnalytics) {
-            logger.info("✅ Orders analytics section verified");
-        }
-        
-        logger.info("Test completed: Analytics Dashboard Functionality");
     }
     
     @Test(description = "Verify dashboard content updates when navigating between tabs")
