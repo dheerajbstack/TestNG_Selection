@@ -26,6 +26,7 @@ public class DashboardPage extends BasePage {
         try {
             seleniumUtils.waitForElementVisible(pageTitle);
             logger.info("Dashboard page loaded successfully");
+            logger.info("Dummy log to test logging functionality");
             return true;
         } catch (Exception e) {
             logger.error("Dashboard page not loaded", e);

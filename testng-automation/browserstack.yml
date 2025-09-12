@@ -7,9 +7,11 @@ accessKey: YOUR_ACCESS_KEY
 framework: testng
 
 # Project settings
-projectName: TestNG Automation Framework
-buildName: TestNG Build
-sessionName: TestNG Test Session
+projectName: TestNG Automation Kalyan1
+buildName: TestNG Kalyan1 Build
+sessionName: TestNG Kalyan1 Test Session
+testObservability: true
+
 
 # Test execution settings
 parallelsPerPlatform: 1
@@ -48,3 +50,9 @@ localOptions:
 # Advanced options
 interactiveDebugging: false
 idleTimeout: 300  # Session timeout in seconds
+
+testOrchestrationOptions:
+  runSmartSelection:
+    enabled: true
+    mode: relevantOnly
+    

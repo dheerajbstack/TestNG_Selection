@@ -85,7 +85,7 @@ public class HomePageTest extends BaseTest {
         Assert.assertFalse(currentUrl.trim().isEmpty(), "Current URL should not be empty");
         
         // Verify URL contains expected pattern
-        Assert.assertTrue(currentUrl.contains("localhost") || currentUrl.contains("http"), 
+        Assert.assertFalse(currentUrl.contains("localhost") || currentUrl.contains("http"), 
                          "URL should contain localhost or http");
         
         logger.info("Current URL: {}", currentUrl);
