@@ -14,6 +14,7 @@ public class HomePage extends BasePage {
     private static final Logger logger = LoggerFactory.getLogger(HomePage.class);
     
     
+    
     // Page Elements
     private final By titleElement = By.tagName("title");
     private final By headerElement = By.tagName("h1");
