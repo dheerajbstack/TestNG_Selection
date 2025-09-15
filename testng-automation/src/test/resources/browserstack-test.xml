@@ -14,7 +14,7 @@
             <class name="com.automation.tests.HomePageTest"/>
             <class name="com.automation.tests.DashboardTest"/>
             <class name="com.automation.tests.TaskManagementTest"/>
-            <!-- <class name="com.automation.tests.SimpleApplicationTest"/> -->
+            <class name="com.automation.tests.SimpleApplicationTest"/>
             <!-- <class name="com.automation.tests.ThemeAndFileUploadTest"/> -->
         </classes>
     </test>    

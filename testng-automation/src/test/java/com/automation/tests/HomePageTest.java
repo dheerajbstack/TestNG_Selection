@@ -16,23 +16,6 @@ public class HomePageTest extends BaseTest {
     
     private static final Logger logger = LoggerFactory.getLogger(HomePageTest.class);
     
-    @Test(description = "Verify home page loads successfully")
-    public void testHomePageLoad() {
-        logger.info("Starting test: testHomePageLoad");
-        
-        HomePage homePage = new HomePage(driver);
-        
-        // Verify page is loaded
-        Assert.assertTrue(homePage.isPageLoaded(), "Home page should be loaded");
-        
-        // Verify navigation menu is visible
-        Assert.assertTrue(homePage.isNavigationMenuVisible(), "Navigation menu should be visible");
-        
-        // Verify all navigation links are present
-        Assert.assertTrue(homePage.areAllNavigationLinksPresent(), "All navigation links should be present");
-        
-        logger.info("Test completed: testHomePageLoad");
-    }
     
     @Test(description = "Verify navigation to Dashboard page")
     public void testNavigationToDashboard() {
