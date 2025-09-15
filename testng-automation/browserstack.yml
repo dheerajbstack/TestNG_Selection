@@ -7,9 +7,9 @@ accessKey: YOUR_ACCESS_KEY
 framework: testng
 
 # Project settings
-projectName: TestNG Automation Kalyan1
-buildName: TestNG Kalyan1 Build
-sessionName: TestNG Kalyan1 Test Session
+projectName: TestNG Automation Kalyan2
+buildName: TestNG Build Demo
+sessionName: TestNG Kalyan2 Test Session
 testObservability: true
 
 
