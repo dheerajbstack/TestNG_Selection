@@ -9,7 +9,6 @@ const PORT = process.env.PORT || 5001;
 let users = [
   { id: 1, name: 'John Doe', email: 'john@example.com', role: 'admin', createdAt: new Date().toISOString() },
   { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'user', createdAt: new Date().toISOString() },
-  { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'user', createdAt: new Date().toISOString() }
 ];
 
 let products = [
@@ -17,7 +16,6 @@ let products = [
   { id: 2, name: 'Smartphone', price: 699.99, category: 'Electronics', stock: 100, description: 'Latest smartphone model' },
   { id: 3, name: 'Headphones', price: 199.99, category: 'Electronics', stock: 75, description: 'Wireless noise-canceling headphones' },
   { id: 4, name: 'Coffee Maker', price: 89.99, category: 'Home', stock: 30, description: 'Automatic coffee maker' },
-  { id: 5, name: 'Book', price: 14.99, category: 'Education', stock: 200, description: 'Programming fundamentals book' }
 ];
 
 let orders = [];
