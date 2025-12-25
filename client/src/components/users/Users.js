@@ -55,14 +55,6 @@ function Users({ users, loading, fetchUsers, fetchAnalytics }) {
             onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
             disabled={loading}
           />
-          <select
-            value={newUser.role}
-            onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
-            disabled={loading}
-          >
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-          </select>
           <button type="submit" disabled={loading}>
             {loading ? 'Adding...' : 'Add User'}
           </button>
