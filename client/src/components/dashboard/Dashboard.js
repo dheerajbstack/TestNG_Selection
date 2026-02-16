@@ -21,12 +21,6 @@ function Dashboard({ message, health, analytics }) {
           <h2>📊 Analytics Dashboard</h2>
           <div className="analytics-grid">
             <div className="analytics-card">
-              <h3>👥 Users</h3>
-              <p>Total: {analytics.users.total}</p>
-              <p>Admins: {analytics.users.admins}</p>
-              <p>Regular: {analytics.users.regular}</p>
-            </div>
-            <div className="analytics-card">
               <h3>📦 Products</h3>
               <p>Total: {analytics.products.total}</p>
               <p>Categories: {analytics.products.categories.length}</p>
