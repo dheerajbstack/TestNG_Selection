@@ -61,7 +61,7 @@ app.get('/health', (req, res) => {
 
 app.get('/api', (req, res) => {
   res.json({ 
-    message: 'Welcome to the Enhanced Full-Stack API!',
+    message: 'World Hello',
     timestamp: new Date().toISOString(),
     version: '2.0.0',
     endpoints: {
