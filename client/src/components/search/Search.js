@@ -55,21 +55,6 @@ function Search({ loading, setLoading }) {
               </div>
             )}
             
-            {searchResults.results.products && searchResults.results.products.length > 0 && (
-              <div className="result-category">
-                <h4>Products ({searchResults.results.products.length})</h4>
-                <div className="results-grid">
-                  {searchResults.results.products.map(product => (
-                    <div key={product.id} className="result-card">
-                      <h5>{product.name}</h5>
-                      <p>${product.price} - {product.category}</p>
-                      <p>Stock: {product.stock}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-            
             {searchResults.results.tasks && searchResults.results.tasks.length > 0 && (
               <div className="result-category">
                 <h4>Tasks ({searchResults.results.tasks.length})</h4>
