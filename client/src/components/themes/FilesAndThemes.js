@@ -178,7 +178,7 @@ function FilesAndThemes({ backgroundTheme, setBackgroundTheme, hasImageBackgroun
             ].map(theme => (
               <button
                 key={theme.value}
-                className={`theme-option ${backgroundTheme === theme.value ? 'active' : ''}`}
+                className={`theme-option ${backgroundTheme === theme.value ? '' : ''}`}
                 onClick={() => handleThemeChange(theme.value)}
                 style={{ 
                   background: theme.color,
