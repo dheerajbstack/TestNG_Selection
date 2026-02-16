@@ -10,7 +10,7 @@ function Dashboard({ message, health, analytics }) {
         {health && (
           <div className="health-info">
             <p>Status: <span className="status-ok">{health.status}</span></p>
-            <p>Uptime: {Math.floor(health.uptime)} seconds</p>
+            <p>Uptime: {Math.floor(health.uptime)}</p>
           </div>
         )}
       </div>
