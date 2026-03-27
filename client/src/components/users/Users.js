@@ -86,9 +86,6 @@ function Users({ users, loading, fetchUsers, fetchAnalytics }) {
             </div>
           ))}
         </div>
-        <button onClick={fetchUsers} className="refresh-btn">
-          Refresh Users
-        </button>
       </div>
     </div>
   );
