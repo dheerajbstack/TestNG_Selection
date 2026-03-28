@@ -74,7 +74,7 @@ function Tasks({ tasks, users, loading, fetchTasks, fetchAnalytics }) {
                 <h3>{task.title}</h3>
                 <span className={`priority-badge ${task.priority}`}>{task.priority}</span>
                 {task.assignedTo && (
-                  <span className="assigned-to">
+                  <span className="who-is-owner">
                     Assigned to: {users.find(u => u.id === task.assignedTo)?.name || 'Unknown'}
                   </span>
                 )}
