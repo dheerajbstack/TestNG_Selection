@@ -71,9 +71,6 @@ function Products({ products, loading, fetchProducts, fetchAnalytics }) {
             value={newProduct.description}
             onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
           />
-          <button type="submit" disabled={loading}>
-            {loading ? 'Adding...' : 'Add Product'}
-          </button>
         </form>
       </div>
 
