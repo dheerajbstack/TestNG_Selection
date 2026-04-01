@@ -23,9 +23,6 @@ function Products({ products, loading, fetchProducts, fetchAnalytics }) {
 
     try {
       console.log('Making API call to:', `/api/products`);
-      const result = await API.products.create(newProduct);
-      
-      console.log('Product created successfully:', result);
       setNewProduct({ name: '', price: '', category: '', stock: '', description: '' });
       fetchProducts();
       fetchAnalytics();
